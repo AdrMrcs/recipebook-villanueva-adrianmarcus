@@ -24,18 +24,19 @@ class Recipe(models.Model):
 class RecipeIngredient(models.Model):
     quantity = models.CharField(max_length=100)
     ingredient = models.ForeignKey(
-        'Ingredient',
+        Ingredient,
         on_delete=models.CASCADE,
         default = 1,
         related_name = 'recipe',
     )
 
     recipe = models.ForeignKey(
-        'Recipe',
+        Recipe,
         on_delete = models.CASCADE,
         default = 1,
         related_name = 'ingredients'
     )
+
 
     def __str__(self):
         return f"{self.quantity} {self.ingredient}"

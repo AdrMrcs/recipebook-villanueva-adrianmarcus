@@ -16,4 +16,15 @@ class RecipeAdmin(admin.ModelAdmin):
 
 admin.site.register(Recipe, RecipeAdmin)
 
+class IngredientAdmin(admin.ModelAdmin):
+    model = Ingredient
+
+    search_fields = ('name',)
+    list_display = ('name',)
+
+    inlines = [RecipeIngredientInLine]
+
+
+admin.site.register(Ingredient, IngredientAdmin)
+
 # Register your models here.
