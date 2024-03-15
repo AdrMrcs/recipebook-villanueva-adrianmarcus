@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Book</title>
-    <h1>Recipe Book</h1>
-</head>
-<body>
-    <h1>{{object.name}}</h1>
-    <ul>
-        {% for x in object.ingredients.all %}
-            <li>{{x.ingredient.name}} - {{ x.quantity}}</li>
-        {% endfor %}
-    </ul>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}Recipe Detail{% endblock %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block content %}
+  <h2>{{ object.name }} by {{ object.author }}</h2>
+  <h2>Ingredients:</h2>
+  <ul>
+    {% for ingredient in object.ingredients.all %}
+      <li>{{ ingredient.ingredient.name }}, {{ ingredient.quantity }}</li>
+    {% endfor %}
+  </ul>
+  <a href="/recipes/list">
+    <h2>Go back to Recipe List</h2>
+  </a>
+{% endblock %}
